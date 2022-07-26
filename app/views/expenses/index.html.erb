@@ -1,0 +1,64 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Expenses</h1>
+
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Empid</th>
+      <th>Invoice number</th>
+      <th>Date</th>
+      <th>Category</th>
+      <th>Description</th>
+      <th>Amount</th>
+      <th>Status</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+
+
+  <tbody>
+    <% if current_user.admin != true %>
+      <% @expenses.each do |expense| %>
+        <% if expense.empID == current_user.id.to_s %>
+          <tr>
+            <td><%= expense.empID %></td>
+            <td><%= expense.invoice_number %></td>
+            <td><%= expense.date %></td>
+            <td><%= expense.category %></td>
+            <td><%= expense.description %></td>
+            <td><%= expense.amount %></td>
+            <td><%= expense.status %></td>
+            <td><%= link_to 'Show', expense %></td>
+            <td><%= link_to 'Edit', edit_expense_path(expense) %></td>
+            <td><%= link_to 'Destroy', expense, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <% if current_user.admin == true %>
+      <% @expenses.each do |expense| %>
+        <tr>
+          <td><%= expense.empID %></td>
+          <td><%= expense.invoice_number %></td>
+          <td><%= expense.date %></td>
+          <td><%= expense.category %></td>
+          <td><%= expense.description %></td>
+          <td><%= expense.amount %></td>
+          <td><%= expense.status %></td>
+          <td><%= link_to 'Show', expense %></td>
+          <td><%= link_to 'Edit', edit_expense_path(expense) %></td>
+          <td><%= link_to 'Destroy', expense, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Expense', new_expense_path %>

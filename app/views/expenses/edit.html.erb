@@ -1,0 +1,12 @@
+<h1>Editing Expense</h1>
+
+
+<% if current_user.admin == true %>
+    <%= render 'adminaccess', expense: @expense %>
+    <%= link_to 'Show', @expense %> |
+    <%= link_to 'Back', expenses_path %>
+    <% else %>
+        <%= render 'form', expense: @expense %>
+        <%= link_to 'Show', @expense %> |
+        <%= link_to 'Back', expenses_path %>
+<% end %>

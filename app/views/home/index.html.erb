@@ -1,0 +1,7 @@
+<h1>Expense Tracker</h1>
+
+<% if user_signed_in? %>
+    <p>User signed in from <%= current_user.email %><p>
+<% else %>
+    <p>Please sign up or sign in to fill your expenses </p>
+<% end %>
